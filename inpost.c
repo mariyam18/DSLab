@@ -85,6 +85,14 @@ void convert(char in[],char post[])
 	{
 		if(s->top==-1)
 		{
-				 	     				 
+		printf("stack is empty\n");
+		return 0;
+    }
+    else
+    {
+		char data=s->a[s->top--];
+		return data;
+    }	 
+}	     				 
 				       
     
