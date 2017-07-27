@@ -26,7 +26,7 @@ if (!isFull())
 	top++;
 	int e;
 	stack[top]=e;
-	printf(" element e is successfully inserted");
+	printf(" element %d is successfully inserted",e);
 }
 else{
 	printf("stack overflow\n");
