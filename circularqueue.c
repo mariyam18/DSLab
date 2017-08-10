@@ -7,7 +7,7 @@ int queue[MAX_SIZE],front=-1,rear=-1;
 
 int isFull(){
 	//returns 1 if queue is full else returns -1
-	return (abs(front-rear)%(MAX_SIZE-1)==1 || abs(front-rear)%(MAX_SIZE-1)==0) ;
+	return ((abs(front-rear)%(MAX_SIZE-1)==1 || abs(front-rear)%(MAX_SIZE-1)==0)&& (front!=-1&&rear!=-1)) ;
 	
 }
 
