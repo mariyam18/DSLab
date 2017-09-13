@@ -1,3 +1,8 @@
+/*Description: Check the continuity or balance of parenthesis in an expression.
+ * Learner: Shiakh Mariyam Anis.
+ */
+
+
 #include<stdio.h>
 
 typedef struct balanced

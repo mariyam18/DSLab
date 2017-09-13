@@ -1,3 +1,8 @@
+/*Description: Array Implementation of stack.
+ * Learner: Shiakh Mariyam Anis.
+ */
+
+
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX_SIZE 10
