@@ -5,9 +5,10 @@
 #include<stdio.h>
 #include<stdlib.h>
  
-typedef struct linked_list{
+typedef struct dlinked_list{
       int data;
-      struct linked_list *next;
+      struct dlinked_list *next;
+      struct dlinked_list *prev;
  }node;
  
  void print(node *q)
@@ -29,10 +30,14 @@ typedef struct linked_list{
     temp=*q;
     ptr=(node*)malloc(sizeof(node));
     ptr->data=no;
+    ptr->prev=NULL;
     if(temp==NULL)
        ptr->next=NULL;
     else
+    {
         ptr->next=temp;
+        temp->prev=ptr;
+	}
     *q=ptr;
     printf("\nELEMENTS OF LINKLIST AFTER INSERTION\n");
     print(*q);
@@ -46,13 +51,16 @@ typedef struct linked_list{
 	  ptr->data=no;
 	  ptr->next=NULL;
 	  temp=*q;
-	  if(temp==NULL)
+	  if(temp==NULL){
 	   *q=ptr;
+	   ptr->prev=NULL;
+      }
 	  else
 	  {
 		  while(temp->next!=NULL)
 		    temp=temp->next;
 		  temp->next=ptr;
+		  ptr->prev=temp;
 	  }
 	  printf("\nELEMENTS OF LINKLIST AFTER INSERTION\n");
 	  print(*q);
@@ -61,24 +69,35 @@ typedef struct linked_list{
   void insafter(node *q,int no)
   {
 	  int loc,k;
-	  node *temp,*ptr,*old;
+	  node *temp,*ptr;
 	  temp=q;
 	  ptr=(node*)malloc(sizeof(node));
 	  ptr->data=no;
 	  printf("ENTER LOCATION WHERE THE NO IS TO BE INSERTED: ");
 	  scanf("%d",&loc);
+	  if(loc==1){
+	      printf("\nPlease use the  Insert at begin option");
+	      return;
+	  }
 	  for(k=1;k<loc;k++)
 	  {
 		  if(temp==NULL)
 		      printf("\nELEMENTS ARE LESS THAN PROVIDED LOCATION\n");
 		   else
 		   {
-			   old=temp;
+			   //old=temp;
 			   temp=temp->next;
 			}
 	  }
+	  if(temp->next==NULL)
+	  {
+	    printf("\nPlease use Insert at End option");
+	    return;
+	}
+	  temp->prev->next=ptr;
+	  ptr->prev=temp->prev;
 	  ptr->next=temp;
-	  old->next=ptr;
+	  temp->prev=ptr;
 	  printf("\nELEMENTS OF LINKELIST AFTER INSERTION \n");
 	  print(q);
 }
@@ -86,7 +105,7 @@ typedef struct linked_list{
 void del(node **q,int no)
 {
 	int f=0;
-	node *old,*temp;
+	node *temp;
 	temp=*q;
 	
 	 while(temp!=NULL)
@@ -95,15 +114,21 @@ void del(node **q,int no)
 		 {
 			 f=1;
 			 if(temp==*q)
-			 *q=temp->next;
-			 else
-			 old->next=temp->next;
+			 {
+			  *q=temp->next;
+			  if(temp->next!=NULL)
+			    temp->next->prev=NULL;
+		     }
+			 else{
+			    temp->prev->next=temp->next;
+			    if(temp->next!=NULL)
+			      temp->next->prev=temp->prev;
+		      }
 			 free(temp);
 			 break;
 		 }
 		 else
 		 {
-			 old=temp;
 			 temp=temp->next;
 		}
 	}
@@ -128,16 +153,22 @@ int main()
 	int i,n,j,no,c;
 	printf("ENTER NUMBER OF NODES:");
 	scanf("%d",&n);
+	if(n<1){
+		printf("\nInvalid Number Of Nodes");
+		return 0;
+	}
 	printf("\nENTER NODE NUMBER1:");
 	start=(node*)malloc(sizeof(node));
 	scanf("%d",&start->data);
+	start->prev=NULL;
 	temp=start;
 	for(i=1;i<n;i++)
 	{
 		ptr=(node*)malloc(sizeof(node));
-		printf("\nENTER NODE NUMBER%d: ",i-1);
+		printf("\nENTER NODE NUMBER%d: ",i+1);
 		scanf("%d",&ptr->data);
 		temp->next=ptr;
+		ptr->prev=temp;
 		temp=ptr;
 	}
 	temp->next=NULL;
@@ -149,11 +180,11 @@ int main()
 		switch(j)
 		{
 			case 1:
-			      printf("ENTER THE NUMBER TO BE INSERTED:");
+			      printf("ENTER THE NUMBER TO BE INSERTED");
 			      scanf("%d",&no);
 			      printf("\nENTER 1 TO INSERT AT THE BEGINNING\n");
 			      printf("ENTER 2 TO INSERT AT THE END\n");
-			      printf("ENTER 3 TO INSERT AT A SPECIFIED LOCATION\n");
+			      printf("\nENTER 3 TO INSERT AT A SPECIFIED LOCATION\n");
 			      scanf("%d",&c);
 			      switch(c)
 			      {
@@ -172,7 +203,7 @@ int main()
 					}
 					break;
 			case 2:
-			       printf("\nENTER THE NUMBER TO BE DELETED:");
+			       printf("\nENTER THE NUMBER TO BE DELETED");
 			       scanf("%d",&no);
 			       del(&start,no);
 			       break;
@@ -188,107 +219,3 @@ int main()
 		 }while(1);
 		 return 0;
 	 }
-
-/*Output
- 
-ENTER NUMBER OF NODES:4
-
-ENTER NODE NUMBER1:10
-
-ENTER NODE NUMBER0: 20
-
-ENTER NODE NUMBER1: 30
-
-ENTER NODE NUMBER2: 40
-
-ENTER YOUR CHOICE
-
-1.INSERTION
-2.DELETION
-3.TRAVERSE
-4.EXIT
-1
-ENTER THE NUMBER TO BE INSERTED:50
-
-ENTER 1 TO INSERT AT THE BEGINNING
-ENTER 2 TO INSERT AT THE END
-ENTER 3 TO INSERT AT A SPECIFIED LOCATION
-1
-
-ELEMENTS OF LINKLIST AFTER INSERTION
-
-50	10	20	30	40	
-ENTER YOUR CHOICE
-
-1.INSERTION
-2.DELETION
-3.TRAVERSE
-4.EXIT
-1
-ENTER THE NUMBER TO BE INSERTED:2
-
-ENTER 1 TO INSERT AT THE BEGINNING
-ENTER 2 TO INSERT AT THE END
-ENTER 3 TO INSERT AT A SPECIFIED LOCATION
-2
-
-ELEMENTS OF LINKLIST AFTER INSERTION
-
-50	10	20	30	40	2	
-ENTER YOUR CHOICE
-
-1.INSERTION
-2.DELETION
-3.TRAVERSE
-4.EXIT
-1
-ENTER THE NUMBER TO BE INSERTED:60
-
-ENTER 1 TO INSERT AT THE BEGINNING
-ENTER 2 TO INSERT AT THE END
-ENTER 3 TO INSERT AT A SPECIFIED LOCATION
-3
-ENTER LOCATION WHERE THE NO IS TO BE INSERTED: 4
-
-ELEMENTS OF LINKELIST AFTER INSERTION 
-
-50	10	20	60	30	40	2	
-ENTER YOUR CHOICE
-
-1.INSERTION
-2.DELETION
-3.TRAVERSE
-4.EXIT
-2
-
-ENTER THE NUMBER TO BE DELETED:2
-
-ELEMENTS OF LINKLIST AFTER DELETION
-
-50	10	20	60	30	40	
-ENTER YOUR CHOICE
-
-1.INSERTION
-2.DELETION
-3.TRAVERSE
-4.EXIT
-3
-
-TRAVERSING LINKLIST
-
-50	10	20	60	30	40	
-IN END OF LINKLIST 
-
-ENTER YOUR CHOICE
-
-1.INSERTION
-2.DELETION
-3.TRAVERSE
-4.EXIT
-4
-
-
-------------------
-(program exited with code: 0)
-Press return to continue
-*/
