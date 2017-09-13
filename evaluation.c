@@ -90,7 +90,17 @@ int main()
     printf("\n\n EVALUATION OF POSTFIX EXPRESSION=%d",evaluate(postfix));
     return 0;
 }
+/*Output
+  ENTER POSTFIX EXPRESSION
+123*+
 
+
+ EVALUATION OF POSTFIX EXPRESSION=7
+
+------------------
+(program exited with code: 0)
+Press return to continue
+*/
 
 
 	 

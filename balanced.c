@@ -104,7 +104,16 @@ int main()
     checkcontinuity(expression);
     return 0;
 }
+/*Output
+ 
+ ENTER AN EXPRESSION CONTAINING ONLY BRACKET 
+{{()[]()}}
+expression is valid
 
+------------------
+(program exited with code: 0)
+Press return to continue
+*/
 
 
 	 

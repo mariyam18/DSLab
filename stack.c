@@ -85,3 +85,115 @@ int main(){
 	}while(1);
 	return 0;
 }
+/*Output
+ 		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 10
+
+Your element 10 is successfully inserted		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 20
+
+Your element 20 is successfully inserted		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 30
+
+Your element 30 is successfully inserted		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 40
+
+Your element 40 is successfully inserted		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 50
+
+Your element 50 is successfully inserted		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 1
+
+Element at the top of stack is : 50		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 3
+
+Your element 50 is successfully deleted		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 1
+
+Element at the top of stack is : 40		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 3
+
+Your element 40 is successfully deleted		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 3
+
+Your element 30 is successfully deleted		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 1
+
+Element at the top of stack is : 20		
+MENU
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 4
+
+
+------------------
+(program exited with code: 0)
+Press return to continue
+*/

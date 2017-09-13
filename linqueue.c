@@ -105,3 +105,116 @@ int main(){
 	}while(1);
 	return 0;
 }
+
+/*Output
+ 			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 
+10
+10 is sucessfully inserted			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 
+20
+20 is sucessfully inserted			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 
+30
+30 is sucessfully inserted			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 
+40
+40 is sucessfully inserted			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 
+50
+50 is sucessfully inserted			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 1
+
+Element at the front of queue is : 10
+			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 3
+Element deleted is 10			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 1
+
+Element at the front of queue is : 20
+			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 3
+Element deleted is 20			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 3
+Element deleted is 30			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 1
+
+Element at the front of queue is : 40
+			
+MENU
+1.peek
+2.Insert
+3.Delet
+4.Exit
+Enter your choice: 4
+
+
+------------------
+(program exited with code: 0)
+Press return to continue
+*/
