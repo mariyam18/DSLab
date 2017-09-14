@@ -135,7 +135,7 @@ int main()
 	for(i=1;i<n;i++)
 	{
 		ptr=(node*)malloc(sizeof(node));
-		printf("\nENTER NODE NUMBER%d: ",i-1);
+		printf("\nENTER NODE NUMBER%d: ",i+1);
 		scanf("%d",&ptr->data);
 		temp->next=ptr;
 		temp=ptr;
