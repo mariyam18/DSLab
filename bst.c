@@ -1,5 +1,5 @@
 /*Description: Implementation of Binary Search Tree.
- Learner: Shiakh Mariyam Anis.
+ Learner: Shaikh Mariyam Anis.
  */
 
 #include<stdio.h>
@@ -26,41 +26,14 @@ void insert(node**r,int num)
 	else
 	{
 		if(num > temp->data)
-		{
-			if(temp->right==NULL)
-			{
-				ptr=(node*)malloc(sizeof(node));
-				ptr->data=num;
-				ptr->left=NULL;
-				ptr->right=NULL;
-				temp->right=ptr;
-				return;
-			}	
-			else
-			{
-				temp=temp->right;
-				insert(&temp,num);
-			}			
-		}
+			insert(&temp->right,num);
 		else
-		{
-			if(temp->left==NULL)
 			{
-				ptr=(node*)malloc(sizeof(node));
-				ptr->data=num;
-				ptr->left=NULL;
-				ptr->right=NULL;
-				temp->left=ptr;
-				return;
-			}	
-			else
-			{
-				temp=temp->left;
-				insert(&temp,num);
+				insert(&temp->left,num);
 			}			
 		}
-	}
 }
+		
 
 void traverse_inorder(node*q)
 {
@@ -93,38 +66,93 @@ int search_bst(node*q,int num)
 	}
 }
 
-	
-void delete(node**q,int num)
+
+void search_node(node **x,node*root,node**parent,int num,int*f)
 {
 	node *temp;
-	temp=*q;
+	temp=root;
+	if(temp==NULL)
+		return;
+    while(temp!=NULL)
+	{
+		if(temp->data==num)
+	  {
+		*f=1;
+		*x=temp;
+		return;
+	  }
+		*parent=temp;
+		if(num>temp->data)
+			temp=temp->right;
+		else
+			temp=temp->left;
+	}
+				
+}
+
+
+
+
+
 	
-	if(temp==NULL)	
+void delete(node**r,int num)
+{
+	node *temp,*parent,*xsucc,*x;
+	int f=0;
+	parent=NULL;
+	x=NULL;xsucc=NULL;
+	temp=*r;
+	search_node(&x,temp,&parent,num,&f);
+	
+	if(f==0)	
 	{
 		printf("\n The given no. is not found");
 		return;
-	else
-	{
-		if(temp->data==num)
-		{
-			if(temp->left==NULL&&temp->right==NULL)
-				free(temp);
-			else
-			{
-				if
-			return 1;
-		else
-		{
-			if(num > q->data){
-				delete(q->right,num);
-			}	
-			else
-			{
-				delete(q->left,num);
-			}			
-		}
 	}
-}
+	
+	if(x->left==NULL && x->right==NULL)			   //x has no child
+	{
+		if(x->data > parent->data)
+			parent->right=NULL;
+		else
+			parent->left=NULL;
+	}
+	 else if(x->left!=NULL && x->right==NULL)			//x has left child
+	{
+		if(x->data > parent->data)
+			parent->right=x->left;
+		else
+			parent->left=x->left;
+	}
+	else if (x->left==NULL && x->right!=NULL)			//x has right child
+	{
+		if(x->data > parent->data)
+			parent->right=x->right;
+		else
+			parent->left=x->right;
+	}
+	else if (x->left!=NULL && x->right!=NULL)			//x has both child
+	{
+		parent=x;
+		xsucc=x->right;
+		while(xsucc->left!=NULL)
+		{
+			parent=xsucc;
+			xsucc=xsucc->left;
+		}
+		if(xsucc->data > parent->data)
+			parent->right=NULL
+			;
+		else
+			parent->left=NULL;
+		x->data=xsucc->data;
+		x=xsucc;
+	}
+	free(x);
+}	
+		
+		
+		
 
 
 
@@ -133,9 +161,14 @@ int main()
 {
 	node*root;
 	root=NULL;
-	insert(&root,5);
-	insert(&root,6);
-	insert(&root,7); 		
+	insert(&root,20);
+	insert(&root,15);
+	insert(&root,13); 
+	insert(&root,17);
+	insert(&root,16);
+	insert(&root,19);
+	insert(&root,18);
+	insert(&root,25);		
     traverse_inorder(root);
     if(search_bst(root,9)==1)
     {
@@ -143,5 +176,6 @@ int main()
 	}
 	else
 	    printf("\n not found");
+	    delet(&root,25);
     return 0;
 }    
