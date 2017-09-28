@@ -56,11 +56,11 @@ int search_bst(node*q,int num)
 		else
 		{
 			if(num > q->data){
-				search_bst(q->right,num);
+				return search_bst(q->right,num);
 			}	
 			else
 			{
-				search_bst(q->left,num);
+				 return search_bst(q->left,num);
 			}			
 		}
 	}
@@ -141,8 +141,8 @@ void delete(node**r,int num)
 			xsucc=xsucc->left;
 		}
 		if(xsucc->data > parent->data)
-			parent->right=NULL
-			;
+			parent->right=NULL;
+			
 		else
 			parent->left=NULL;
 		x->data=xsucc->data;
@@ -176,6 +176,6 @@ int main()
 	}
 	else
 	    printf("\n not found");
-	    delet(&root,25);
+	    delete(&root,25);
     return 0;
 }    
