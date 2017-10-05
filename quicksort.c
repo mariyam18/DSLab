@@ -1,4 +1,4 @@
-/*Description: Implementation of Binary Search Tree.
+/*Description: Implementation of Quick Sort.
  Learner: Shaikh Mariyam Anis.
  */
  
